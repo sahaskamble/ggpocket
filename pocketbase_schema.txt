@@ -1,0 +1,88 @@
+### Users Collection
+| Field Name | Type | Required | Primary Key | Relations/Values |
+|-----------|------|----------|-------------|-----------------|
+| id | text | ✅ | ✅ | - |
+| password | password | ✅ | ❌ | - |
+| tokenKey | text | ✅ | ❌ | - |
+| email | email | ✅ | ❌ | - |
+| emailVisibility | bool | ❌ | ❌ | - |
+| verified | bool | ❌ | ❌ | - |
+| username | text | ✅ | ❌ | - |
+| avatar | file | ❌ | ❌ | (Image types) |
+| role | select | ❌ | ❌ | SuperAdmin, Admin, StoreManager, Staff |
+| branch_id | relation | ❌ | ❌ | branches |
+| created | autodate | ✅ | ❌ | - |
+| updated | autodate | ✅ | ❌ | - |
+
+### Branches Collection
+| Field Name | Type | Required | Primary Key | Relations/Values |
+|-----------|------|----------|-------------|-----------------|
+| id | text | ✅ | ✅ | - |
+| name | text | ❌ | ❌ | - |
+| location | text | ❌ | ❌ | - |
+| contact_number | number | ❌ | ❌ | - |
+| user_id | relation | ❌ | ❌ | users |
+| created | autodate | ✅ | ❌ | - |
+| updated | autodate | ✅ | ❌ | - |
+
+### Customers Collection
+| Field Name | Type | Required | Primary Key | Relations/Values |
+|-----------|------|----------|-------------|-----------------|
+| id | text | ✅ | ✅ | - |
+| customer_name | text | ❌ | ❌ | - |
+| customer_contact | text | ❌ | ❌ | - |
+| total_visits | number | ❌ | ❌ | - |
+| total_rewards | number | ❌ | ❌ | - |
+| branch_id | relation | ❌ | ❌ | branches |
+| user_id | relation | ❌ | ❌ | users |
+| created | autodate | ✅ | ❌ | - |
+| updated | autodate | ✅ | ❌ | - |
+
+### Inventory Collection
+| Field Name | Type | Required | Primary Key | Relations/Values |
+|-----------|------|----------|-------------|-----------------|
+| id | text | ✅ | ✅ | - |
+| name | text | ❌ | ❌ | - |
+| type | select | ❌ | ❌ | device, game, snack |
+| category | text | ❌ | ❌ | - |
+| stock | number | ❌ | ❌ | - |
+| branch_id | relation | ❌ | ❌ | branches |
+| popularity_score | number | ❌ | ❌ | - |
+| avatar | file | ❌ | ❌ | - |
+| status | select | ❌ | ❌ | open, booked |
+| created | autodate | ✅ | ❌ | - |
+| updated | autodate | ✅ | ❌ | - |
+
+### Pricing Collection
+| Field Name | Type | Required | Primary Key | Relations/Values |
+|-----------|------|----------|-------------|-----------------|
+| id | text | ✅ | ✅ | - |
+| single_player | number | ❌ | ❌ | - |
+| multi_player | number | ❌ | ❌ | - |
+| over_three_player | number | ❌ | ❌ | - |
+| branch_id | relation | ❌ | ❌ | branches |
+| user_id | relation | ❌ | ❌ | users |
+| created | autodate | ✅ | ❌ | - |
+| updated | autodate | ✅ | ❌ | - |
+
+### Sessions Collection
+| Field Name | Type | Required | Primary Key | Relations/Values |
+|-----------|------|----------|-------------|-----------------|
+| id | text | ✅ | ✅ | - |
+| customer_id | relation | ❌ | ❌ | customers |
+| device_id | relation | ❌ | ❌ | inventory |
+| game_id | relation | ❌ | ❌ | inventory |
+| no_of_players | number | ❌ | ❌ | - |
+| session_in | date | ❌ | ❌ | - |
+| session_out | date | ❌ | ❌ | - |
+| duration_hours | number | ❌ | ❌ | - |
+| snack_id | relation | ❌ | ❌ | inventory |
+| total_amount | number | ❌ | ❌ | - |
+| reward_points_earned | number | ❌ | ❌ | - |
+| branch_id | relation | ❌ | ❌ | branches |
+| status | select | ❌ | ❌ | active, occupied, extended, closed |
+| user_id | relation | ❌ | ❌ | users |
+| payment_mode | select | ✅ | ❌ | - |
+| created | autodate | ✅ | ❌ | - |
+| updated | autodate | ✅ | ❌ | - |
+

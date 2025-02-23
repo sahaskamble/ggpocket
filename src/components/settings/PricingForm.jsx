@@ -4,9 +4,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
-import pb from "@/lib/db";
-import { useAuth } from "@/contexts/auth-context";
+import { toast } from "sonner";
+import { pb } from "@/app/lib/db";
 
 export function PricingForm({ initialData }) {
     const [loading, setLoading] = useState(false);
@@ -16,8 +15,7 @@ export function PricingForm({ initialData }) {
         over_three_player: initialData?.over_three_player || 0,
 
     });
-    const { toast } = useToast();
-    const { user } = useAuth();
+    const { user } = useSession();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -46,17 +44,10 @@ export function PricingForm({ initialData }) {
                 await pb.collection('pricing').create(data);
             }
 
-            toast({
-                title: "Success",
-                description: "Pricing updated successfully",
-            });
+            toast.success("Pricing updated successfully");
         } catch (error) {
             console.error('Error:', error);
-            toast({
-                variant: "destructive",
-                title: "Error",
-                description: "Failed to update pricing",
-            });
+            toast.error("Failed to update pricing");
         } finally {
             setLoading(false);
         }
